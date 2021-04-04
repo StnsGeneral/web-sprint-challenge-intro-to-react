@@ -35,14 +35,18 @@ export default function LearnMore(props) {
       .then((res) => {
         setDetails(res.data);
       })
+      .then(() => {
+        axios.get(``).then((res) => {});
+      })
+
       .catch((err) => console.log(err));
   }, [personId]);
 
-  useEffect(() => {
-    axios.get(`${details.homeworld}`).then((res) => {
-      setHomeWorld(res.data.name);
-    });
-  });
+  // useEffect(() => {
+  //   axios.get(`${details.homeworld}`).then((res) => {
+  //     setHomeWorld(res.data.name);
+  //   });
+  // });
 
   return (
     <StyledContainer className="container">

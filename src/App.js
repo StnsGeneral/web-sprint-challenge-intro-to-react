@@ -8,7 +8,7 @@ const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
   const [people, setPeople] = useState([]);
-  const [currentPersonId, setCurrentPersonId] = useState('1');
+  const [currentPersonId, setCurrentPersonId] = useState('2');
 
   const openLearnMore = (name) => {
     setCurrentPersonId(name);
