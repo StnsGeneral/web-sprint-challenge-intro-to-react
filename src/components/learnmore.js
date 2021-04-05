@@ -1,7 +1,9 @@
+// Importing requirements
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+// Defining styed components
 const StyledContainer = styled.div`
   background-color: rgba(43, 169, 204, 0.5);
   width: 60%;
@@ -22,32 +24,24 @@ const StyledButton = styled.button`
   border-radius: 5px;
   outline: none;
   background-color: rgba(43, 169, 204, 0.7);
+  margin-bottom: 15px;
 `;
 
+// Exporting LearnMore creator
 export default function LearnMore(props) {
   const { personId, close } = props;
   const [details, setDetails] = useState([]);
-  const [homeWorld, setHomeWorld] = useState('');
 
   useEffect(() => {
     axios
-      .get(`https://swapi.dev/api/people/${personId}`)
+      .get(`${personId}`)
       .then((res) => {
         setDetails(res.data);
       })
-      .then(() => {
-        axios.get(``).then((res) => {});
-      })
-
       .catch((err) => console.log(err));
   }, [personId]);
 
-  // useEffect(() => {
-  //   axios.get(`${details.homeworld}`).then((res) => {
-  //     setHomeWorld(res.data.name);
-  //   });
-  // });
-
+  // return HTML structure
   return (
     <StyledContainer className="container">
       <StyledHeader>More information for {details.name}:</StyledHeader>
@@ -56,7 +50,6 @@ export default function LearnMore(props) {
           <StyledParagraph>Birth year: {details.birth_year} </StyledParagraph>
           <StyledParagraph>Height: {details.height}</StyledParagraph>
           <StyledParagraph>Mass: {details.mass}</StyledParagraph>
-          <StyledParagraph>Home World: {homeWorld}</StyledParagraph>
         </div>
       )}
       <StyledButton onClick={close}>Close</StyledButton>

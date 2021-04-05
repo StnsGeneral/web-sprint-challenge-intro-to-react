@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// Defining styled component
+// Defining styled components
 const StyledCharacter = styled.div`
   font-size: 3rem;
   display: flex;
@@ -18,11 +18,12 @@ const StyledButton = styled.button`
   outline: none;
 `;
 
+// Exporting Character creator
 export default function Character({ info, action }) {
   return (
     <StyledCharacter>
       {info.name}
-      <StyledButton onclick={() => action(info.name)}>Learn more!</StyledButton>
+      <StyledButton onclick={() => action(info.url)}>Learn more!</StyledButton>
     </StyledCharacter>
   );
 }

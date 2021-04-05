@@ -1,19 +1,24 @@
+// Importing requirements
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import Character from './components/Character';
-import LearnMore from './components/learnmore';
+import LearnMore from './components/LearnMore';
 
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
   const [people, setPeople] = useState([]);
-  const [currentPersonId, setCurrentPersonId] = useState('2');
+  const [currentPersonId, setCurrentPersonId] = useState(
+    'http://swapi.dev/api/people/1/'
+  );
 
-  const openLearnMore = (name) => {
-    setCurrentPersonId(name);
+  // Setting parameters for pressing Learn More button
+  const openLearnMore = (url) => {
+    setCurrentPersonId(url);
   };
 
+  // Setting parameters for pressing close button
   const closeLearnMore = () => {
     setCurrentPersonId('');
   };
@@ -22,6 +27,7 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
+  // Fetch request
   useEffect(() => {
     axios
       .get(`https://swapi.dev/api/people/`)
@@ -29,6 +35,7 @@ const App = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  // Returning HTML structure
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
